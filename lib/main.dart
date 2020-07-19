@@ -1,4 +1,9 @@
+import 'package:blogc_pattern/services/article_repository.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:bloc/bloc.dart';
+import 'package:blogc_pattern/bloc/article_blogc.dart';
+import 'package:blogc_pattern/ui/home_page.dart';
 
 void main() {
   runApp(MyApp());
@@ -26,7 +31,11 @@ class MyApp extends StatelessWidget {
         // closer together (more dense) than on mobile platforms.
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: BlocProvider(
+        builder: (context) => ArticleBloc(repository: ArticleWorker()),
+        child: HomePage()
+
+      ),
     );
   }
 }
